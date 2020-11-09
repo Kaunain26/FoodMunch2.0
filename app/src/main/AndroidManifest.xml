@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity
-            android:name=".activity.OTPActivity"
+            android:name=".activity.ChangePassWordActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
 

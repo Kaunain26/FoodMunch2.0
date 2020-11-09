@@ -74,6 +74,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
                             /* Hiding progress bar and making  visible next button*/
                             progressBar.visibility = View.GONE
                             btnNext.visibility = View.VISIBLE
+
                             val intent = Intent(
                                 this@ForgetPasswordActivity,
                                 ChangePassWordActivity::class.java
