@@ -175,11 +175,9 @@ class CartActivity : AppCompatActivity() {
 
     private fun formatDate(): String? {
         val c = Calendar.getInstance().time
-        Log.d("Formatted", "Current time => $c")
 
         val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
         val formattedDate = df.format(c)
-        Log.d("Formatted", "Current time => $formattedDate")
 
         return formattedDate
     }

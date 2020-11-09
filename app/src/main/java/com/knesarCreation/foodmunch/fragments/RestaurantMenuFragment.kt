@@ -16,7 +16,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.firebase.database.*
@@ -109,32 +108,37 @@ class RestaurantMenuFragment : Fragment() {
                             val value = ss.getValue(RestaurantMenu::class.java)
                             menuList.add(value!!)
 
-                            resMenuRecyclerAdapter =
-                                ResMenuRecyclerAdapter(
-                                    activity as Context,
-                                    menuList,
-                                    object : ResMenuRecyclerAdapter.OnItemClickListener {
-                                        override fun onAddItemClick(
-                                            orderItems: RestaurantMenu
-                                        ) {
-                                            /*hiding  btnProceedToCard visible */
-                                            btnProceedToCard.visibility = View.VISIBLE
-                                            cartList.add(orderItems) /*Adding food to cart list*/
-                                            ResMenuRecyclerAdapter.isCartEmpty = false
-                                        }
-
-                                        override fun onRemoveItemClick(orderItems: RestaurantMenu) {
-                                            cartList.remove(orderItems) /*Removing food from cart list*/
-                                            if (cartList.isEmpty()) {
-                                                /*hiding  btnProceedToCard */
-                                                btnProceedToCard.visibility = View.GONE
-                                                ResMenuRecyclerAdapter.isCartEmpty = true
+                            try {
+                                resMenuRecyclerAdapter =
+                                    ResMenuRecyclerAdapter(
+                                        activity!!,
+                                        menuList,
+                                        object : ResMenuRecyclerAdapter.OnItemClickListener {
+                                            override fun onAddItemClick(
+                                                orderItems: RestaurantMenu
+                                            ) {
+                                                /*hiding  btnProceedToCard visible */
+                                                btnProceedToCard.visibility = View.VISIBLE
+                                                cartList.add(orderItems) /*Adding food to cart list*/
+                                                ResMenuRecyclerAdapter.isCartEmpty = false
                                             }
-                                        }
 
-                                    })
+                                            override fun onRemoveItemClick(orderItems: RestaurantMenu) {
+                                                cartList.remove(orderItems) /*Removing food from cart list*/
+                                                if (cartList.isEmpty()) {
+                                                    /*hiding  btnProceedToCard */
+                                                    btnProceedToCard.visibility = View.GONE
+                                                    ResMenuRecyclerAdapter.isCartEmpty = true
+                                                }
+                                            }
 
-                            setUpRecyclerView()
+                                        })
+                            } catch (e: NullPointerException) {
+                                e.printStackTrace()
+                            }
+                            /*setting adapter*/
+                            resDetailsRecyclerView.adapter = resMenuRecyclerAdapter
+
                             rlLoading.visibility = View.INVISIBLE
                         }
                     }
@@ -186,17 +190,6 @@ class RestaurantMenuFragment : Fragment() {
                 ).show()
             }
         }
-    }
-
-
-    private fun setUpRecyclerView() {
-        val linearLayoutManager = LinearLayoutManager(activity as Context)
-
-        /*setting layout manager*/
-        resDetailsRecyclerView.layoutManager = linearLayoutManager
-
-        /*setting adapter*/
-        resDetailsRecyclerView.adapter = resMenuRecyclerAdapter
     }
 
     private fun openAllRestaurantsFragment() {

@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.knesarCreation.foodmunch.R
@@ -87,14 +86,17 @@ class OrderHistoryFragment : Fragment() {
                                 )
                             )
 
-                            val linearLayoutManager = LinearLayoutManager(activity as Context)
-                            orderHistParentRecyclerView.layoutManager = linearLayoutManager
+                            try {
+                                orderHistoryParentAdapter =
+                                    OrderHistoryParentAdapter(activity!!, orderHistoryList)
+                                orderHistParentRecyclerView.adapter = orderHistoryParentAdapter
+                            } catch (e: NullPointerException) {
+                                e.printStackTrace()
+                            } finally {
+                                orderHistoryList.reverse()
+                                rlLoading.visibility = View.GONE
+                            }
 
-                            orderHistoryParentAdapter =
-                                OrderHistoryParentAdapter(activity as Context, orderHistoryList)
-                            orderHistParentRecyclerView.adapter = orderHistoryParentAdapter
-                            orderHistoryList.reverse()
-                            rlLoading.visibility = View.GONE
 
                         }
                     } else {

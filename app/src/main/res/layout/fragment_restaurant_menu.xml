@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.RestaurantMenuFragment">
 
     <TextView
@@ -34,6 +35,7 @@
         android:layout_above="@id/btnProceedToCart"
         android:layout_below="@id/view"
         android:scrollIndicators="right"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:scrollbars="vertical"
         tools:listitem="@layout/recycler_restaurants_menu_single_row"
         tools:targetApi="m" />
