@@ -109,7 +109,6 @@ class OrderHistoryFragment : Fragment() {
                     rlLoading.visibility = View.GONE
                     Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
                 }
-
             })
         } else {
             Toast.makeText(activity as Context, "No Internet Connection", Toast.LENGTH_SHORT).show()

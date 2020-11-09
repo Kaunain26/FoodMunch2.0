@@ -14,10 +14,6 @@ class AllRestaurantsFragment : Fragment() {
 
     lateinit var mTabLayout: TabLayout
     lateinit var mViewPager: ViewPager
-
-    //    private val restaurantsList = arrayListOf<Restaurants>()
-    lateinit var searchView: SearchView
-    private var checkedItem = -1
     lateinit var pagerAdapter: PagerAdapter
 
     override fun onCreateView(
@@ -28,7 +24,6 @@ class AllRestaurantsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_all_restaurants, container, false)
 
         /*finding views by id*/
-//        searchView = view.findViewById(R.id.dashboardSearchView)
         mTabLayout = view.findViewById(R.id.mTabLayout)
         mViewPager = view.findViewById(R.id.mViewPager)
 

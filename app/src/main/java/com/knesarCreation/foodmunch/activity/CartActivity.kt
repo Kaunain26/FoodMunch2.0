@@ -120,10 +120,7 @@ class CartActivity : AppCompatActivity() {
                 mRef.push().setValue(orderHistory).addOnSuccessListener {
 
                     /*Clearing cart after order is placed*/
-                    val isClear = _root_ide_package_.com.knesarCreation.foodmunch.activity.CartActivity.ClearCart(
-                        this,
-                        resId!!
-                    ).execute().get()
+                    val isClear = ClearCart(this, resId!!).execute().get()
                     ResMenuRecyclerAdapter.isCartEmpty = true
 
                     /*after successfully cleared show a Dialog confirmation message that **ORDER IS PLACED***/
@@ -142,12 +139,7 @@ class CartActivity : AppCompatActivity() {
                             btnPlaceOrder.visibility = View.GONE
 
                             /*After a successful order open a Dashboard Activity*/
-                            startActivity(
-                                Intent(
-                                    this,
-                                    _root_ide_package_.com.knesarCreation.foodmunch.activity.DashboardActivity::class.java
-                                )
-                            )
+                            startActivity(Intent(this, DashboardActivity::class.java))
                             ActivityCompat.finishAffinity(this)
                         }
 
@@ -166,7 +158,7 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun setUpCart() {
-        val cartList = _root_ide_package_.com.knesarCreation.foodmunch.activity.CartActivity.GetOrderListFromDBAsync(
+        val cartList = GetOrderListFromDBAsync(
             applicationContext
         ).execute().get()
 

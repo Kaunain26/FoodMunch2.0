@@ -22,6 +22,7 @@ import androidx.room.Room
 import com.google.firebase.database.*
 import com.google.gson.Gson
 import com.knesarCreation.foodmunch.R
+import com.knesarCreation.foodmunch.activity.CartActivity
 import com.knesarCreation.foodmunch.adapter.ResMenuRecyclerAdapter
 import com.knesarCreation.foodmunch.database.CartEntity
 import com.knesarCreation.foodmunch.database.Database
@@ -174,8 +175,7 @@ class RestaurantMenuFragment : Fragment() {
             val success = addItemsToCart.get()
             if (success) {
                 val data = Intent(
-                    activity as Context,
-                    _root_ide_package_.com.knesarCreation.foodmunch.activity.CartActivity::class.java
+                    activity as Context, CartActivity::class.java
                 )
                 data.putExtra("res_id", restaurantId)
                 data.putExtra("res_name", restaurantName)
