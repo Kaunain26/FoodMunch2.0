@@ -87,11 +87,12 @@ class TabItemsFragment : Fragment() {
                                         activity!!.supportFragmentManager,
                                         1
                                     )
+                                setUpRecyclerView()
                             } catch (e: NullPointerException) {
                                 e.printStackTrace()
                             }
 
-                            setUpRecyclerView()
+
                             rlLoading.visibility = View.INVISIBLE
                         }
                     }
