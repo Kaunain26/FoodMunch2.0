@@ -79,13 +79,17 @@ class TabItemsFragment : Fragment() {
                             val value = ss.getValue(Restaurants::class.java)
                             resList.add(value!!)
 
-                            mAdapter =
-                                AllRestaurantsRecyclerAdapter(
-                                    activity as Context,
-                                    resList,
-                                    activity!!.supportFragmentManager,
-                                    1
-                                )
+                            try {
+                                mAdapter =
+                                    AllRestaurantsRecyclerAdapter(
+                                        activity as Context,
+                                        resList,
+                                        activity!!.supportFragmentManager,
+                                        1
+                                    )
+                            } catch (e: NullPointerException) {
+                                e.printStackTrace()
+                            }
 
                             setUpRecyclerView()
                             rlLoading.visibility = View.INVISIBLE
